@@ -53,8 +53,22 @@ meilisearch --import-dump dumps/20240611-142338344.dump
 - After deploy completes, visit new application using `fly.dev` domain and verify the data looks correct.
 
 ## Swap DNS
+- Remove cert from old application
+```
+fly certs remove search.roadsign.pictures
+```
 - Create a new certificate for the new application:
 ```
 fly certs add search.roadsign.pictures
 ```
-- Note the new CNAME and update the DNS record to point to the new application.
+- Note the new CNAME and update the DNS record to point to the new application.  Remove any old DNS records pointing to `search.roadsign.pictures`
+
+## Cleanup
+
+- Remove old application.
+```
+git checkout main
+fly destroy
+```
+
+- Merge new branch into main
