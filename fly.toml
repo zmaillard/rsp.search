@@ -1,31 +1,27 @@
-# fly.toml app configuration file generated for rsp-search on 2024-03-03T06:38:30-07:00
+# fly.toml app configuration file generated for rsp-search-v182 on 2024-06-11T10:20:09-06:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'rsp-search'
+app = 'rsp-search-v182'
 primary_region = 'sea'
 kill_signal = 'SIGINT'
 kill_timeout = '5s'
 
 [build]
-  image = 'getmeili/meilisearch:v1.6.2'
-
-[[mounts]]
-  source = 'disc1'
-  destination = '/meili_data'
+  image = 'getmeili/meilisearch:v1.8.2'
 
 [[services]]
   protocol = 'tcp'
   internal_port = 7700
   processes = ['app']
 
-[[services.ports]]
+  [[services.ports]]
     port = 80
     handlers = ['http']
     force_https = true
 
-[[services.ports]]
+  [[services.ports]]
     port = 443
     handlers = ['tls', 'http']
 
@@ -34,7 +30,7 @@ kill_timeout = '5s'
     hard_limit = 25
     soft_limit = 20
 
-[[services.tcp_checks]]
+  [[services.tcp_checks]]
     timeout = '2s'
     grace_period = '1s'
 
