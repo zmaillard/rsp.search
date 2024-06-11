@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for rsp-search-v182 on 2024-06-11T10:20:09-06:00
+# fly.toml app configuration file generated for rsp-search-v182 on 2024-06-11T12:53:19-06:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -10,6 +10,10 @@ kill_timeout = '5s'
 
 [build]
   image = 'getmeili/meilisearch:v1.8.2'
+
+[[mounts]]
+  source = 'disc1'
+  destination = '/meili_data'
 
 [[services]]
   protocol = 'tcp'
